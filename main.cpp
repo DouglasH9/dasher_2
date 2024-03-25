@@ -2,16 +2,20 @@
 #include <raylib.h>
 #include "constants.h"
 #include "classes/Scarfy.h"
+#include "classes/Nebula.h"
 
 int main() {
 
     bool is_in_air{false};
     float velocity_y{0.0};
+    int frame{};
+    float running_time{};
 
     InitWindow(screen_width, screen_height, "Dapper Dasher");
 
 
     Scarfy scarfy{};
+    Nebula neb{};
 
     SetTargetFPS(60);
 
@@ -35,9 +39,22 @@ int main() {
             scarfy.set_scarfy_pos_y(jump_velocity);
         }
 
+        //update scarfy animation frame
+        running_time += dT;
+        if (running_time >= animate_update_time) {
+            running_time = 0.0;
+
+            scarfy.set_scarfy_rec_x((float) frame * scarfy.get_scarfy_rec_width());
+            frame++;
+            if (frame > 5)
+                frame = 0;
+        }
+
         scarfy.set_scarfy_pos_y(velocity_y * dT);
 
         scarfy.draw_scarfy();
+        neb.draw_neb();
+
 
         EndDrawing();
     }

@@ -39,3 +39,11 @@ float Scarfy::get_rec_height() const {
 Texture2D Scarfy::get_scarfy_text() const {
     return Scarfy::scarfy_text;
 }
+
+void Scarfy::set_scarfy_rec_x(float val) {
+    scarfy_rec.x = val;
+}
+
+float Scarfy::get_scarfy_rec_width() const {
+    return scarfy_rec.width;
+}

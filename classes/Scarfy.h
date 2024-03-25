@@ -18,11 +18,19 @@ public:
 
     void set_scarfy_velocity_y_zero();
 
+    [[nodiscard]]
     float get_scarfy_pos_y() const;
 
+    [[nodiscard]]
     float get_rec_height() const;
 
+    [[nodiscard]]
     Texture2D get_scarfy_text() const;
+
+    void set_scarfy_rec_x(float val);
+
+    [[nodiscard]]
+    float get_scarfy_rec_width() const;
 
     void draw_scarfy();
 };

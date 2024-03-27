@@ -30,11 +30,15 @@ int main() {
         BeginDrawing();
         ClearBackground(WHITE);
         bg_x -= 20 * dT;
+        if (bg_x <= -far_bg.width*2.0)
+            bg_x = 0.0;
 
         //draw background
-        Vector2 bg_pos{bg_x, 0.0};
+        Vector2 bg1_pos{bg_x, 0.0};
+        DrawTextureEx(far_bg, bg1_pos, 0.0, 4.7, WHITE);
+        Vector2 bg2_pos{bg_x + ((float)far_bg.width * 2.0), 0.0};
+        DrawTextureEx(far_bg, bg2_pos, 0.0, 4.7, WHITE);
 
-        DrawTextureEx(far_bg, bg_pos, 0.0, 4.7, WHITE);
 
         if (scarfy.get_scarfy_pos_y() >= screen_height - scarfy.get_rec_height()) {
             scarfy.set_is_in_air(false);

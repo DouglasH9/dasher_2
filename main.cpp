@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "classes/Scarfy.h"
 #include "classes/Nebula.h"
+#include "functions.h"
 
 int main() {
 
@@ -40,29 +41,9 @@ int main() {
             scarfy.jump();
         }
 
-        //update scarfy animation frame
-        scarfy.increment_run_time(dT);
-        if (scarfy.get_run_time() >= animate_update_time && !scarfy.get_is_in_air()) {
-            scarfy.set_run_time(0.0);
+        animate_scarfy(scarfy, dT);
 
-            scarfy.set_scarfy_rec_x((float) scarfy.get_frame() * scarfy.get_scarfy_rec_width());
-            scarfy.increment_frame();
-            if (scarfy.get_frame() > 5)
-                scarfy.reset_frame();
-        }
-
-
-        for (Nebula& neb: neb_vec) {
-            neb.increment_run_time(dT);
-            if (neb.get_neb_run_time() >= animate_update_time) {
-                neb.set_neb_run_time(0.0);
-
-                neb.set_neb_rec_x((float) neb.get_frame() * neb.get_neb_rec_width());
-                neb.increase_frame();
-                if (neb.get_frame() > 7)
-                    neb.reset_frame();
-            }
-        }
+        animate_nebulae(neb_vec, dT);
 
         for (Nebula& neb: neb_vec) {
             neb.set_neb_pos_x( Nebula::velocity * dT);

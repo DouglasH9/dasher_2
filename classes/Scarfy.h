@@ -11,7 +11,13 @@ private:
     Texture2D scarfy_text = LoadTexture("../textures/scarfy.png");
     Rectangle scarfy_rec{};
     Vector2 scarfy_pos{};
+
+    bool is_in_air{false};
+    int frame;
+    float velocity_y;
+    float running_time;
 public:
+
     Scarfy();
 
     void set_scarfy_pos_y(float velocity_y);
@@ -32,7 +38,35 @@ public:
     [[nodiscard]]
     float get_scarfy_rec_width() const;
 
+    [[nodiscard]]
+    bool get_is_in_air() const;
+
+    void set_is_in_air(bool val);
+
+    float get_vel_y() const;
+
+    void set_velocity_y(float val);
+
+    void increment_vel_y(float val);
+
+    void increment_run_time(float val);
+
+    void jump();
+
     void draw_scarfy();
+
+    [[nodiscard]]
+    float get_run_time() const;
+
+    void set_run_time(float val);
+
+    [[nodiscard]]
+    int get_frame() const;
+
+    void reset_frame();
+
+    void increment_frame();
+
 };
 
 

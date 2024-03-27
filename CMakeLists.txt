@@ -17,7 +17,7 @@ FETCHCONTENT_MAKEAVAILABLE(raylib)
 
 
 add_executable(dapper_dasher main.cpp constants.h classes/Scarfy.cpp
-        classes/Scarfy.h classes/Nebula.cpp classes/Nebula.h functions.h)
+        classes/Scarfy.h classes/Nebula.cpp classes/Nebula.h functions_lib.h)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 

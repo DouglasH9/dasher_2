@@ -4,16 +4,18 @@
 #include "constants.h"
 #include "classes/Scarfy.h"
 #include "classes/Nebula.h"
-#include "functions.h"
+#include "functions_lib.h"
 
 int main() {
 
     InitWindow(screen_width, screen_height, "Dapper Dasher");
 
-
     Scarfy scarfy{};
-    //Nebula neb{screen_width};
+
     std::vector<Nebula> neb_vec;
+
+    Texture2D far_bg = LoadTexture("../textures/far-buildings.png");
+    float bg_x{};
 
     for (int i{0}; i < number_of_nebs; ++i) {
         neb_vec.emplace_back(screen_width + (i * 200.0));
@@ -26,9 +28,13 @@ int main() {
         const float dT{GetFrameTime()};
 
         BeginDrawing();
-        ClearBackground(DARKBLUE);
-        DrawText("Henlo World!", (screen_width - 300.0)/2.0, (screen_height - 50)/2.0,
-                 50, LIGHTGRAY);
+        ClearBackground(WHITE);
+        bg_x -= 20 * dT;
+
+        //draw background
+        Vector2 bg_pos{bg_x, 0.0};
+
+        DrawTextureEx(far_bg, bg_pos, 0.0, 4.7, WHITE);
 
         if (scarfy.get_scarfy_pos_y() >= screen_height - scarfy.get_rec_height()) {
             scarfy.set_is_in_air(false);
@@ -41,9 +47,9 @@ int main() {
             scarfy.jump();
         }
 
-        animate_scarfy(scarfy, dT);
+        update_animation_scarfy(scarfy, dT);
 
-        animate_nebulae(neb_vec, dT);
+        update_animation_nebulae(neb_vec, dT);
 
         for (Nebula& neb: neb_vec) {
             neb.set_neb_pos_x( Nebula::velocity * dT);
@@ -61,6 +67,7 @@ int main() {
     UnloadTexture(scarfy.get_scarfy_text());
     for (Nebula neb: neb_vec)
         UnloadTexture(neb.get_neb_text());
+    UnloadTexture(far_bg);
     CloseWindow();
 
     return 0;

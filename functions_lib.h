@@ -8,7 +8,7 @@
 
 #define DAPPER_DASHER_FUNCTIONS_H
 
-void animate_scarfy(Scarfy& scarfy, const float dT) {
+void update_animation_scarfy(Scarfy& scarfy, const float dT) {
     scarfy.increment_run_time(dT);
     if (scarfy.get_run_time() >= animate_update_time && !scarfy.get_is_in_air()) {
         scarfy.set_run_time(0.0);
@@ -20,7 +20,7 @@ void animate_scarfy(Scarfy& scarfy, const float dT) {
     }
 }
 
-void animate_nebulae(std::vector<Nebula>& neb_vec, const float dT) {
+void update_animation_nebulae(std::vector<Nebula>& neb_vec, const float dT) {
     for (Nebula& neb: neb_vec) {
         neb.increment_run_time(dT);
         if (neb.get_neb_run_time() >= animate_update_time) {

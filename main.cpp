@@ -72,19 +72,23 @@ int main() {
 
         check_collisions(neb_vec, scarfy, collision);
 
-        if (!collision) {
-            for (Nebula &neb: neb_vec) {
-                neb.set_neb_pos_x(Nebula::velocity * dT);
-                neb.draw_neb();
-            }
-        }
-
         finish_line += Nebula::velocity * dT;
 
         scarfy.set_scarfy_pos_y(scarfy.get_vel_y() * dT);
 
-        if (!collision)
+        if (collision) {
+            DrawText("GAME OVER", (screen_width / 2.0) - (8.0 * 42.0 / 2.0),
+                     screen_height / 2.0 - (42.0 / 2), 42, WHITE);
+        } else if (scarfy.get_scarfy_pos_x() > finish_line) {
+            DrawText("YOU WIN!!!", (screen_width / 2.0) - (8.0 * 42.0 / 2.0),
+                     screen_height / 2.0 - (42.0 / 2), 42, WHITE);
+        } else {
+            for (Nebula &neb: neb_vec) {
+                neb.set_neb_pos_x(Nebula::velocity * dT);
+                neb.draw_neb();
+            }
             scarfy.draw_scarfy();
+        }
 
         EndDrawing();
     }

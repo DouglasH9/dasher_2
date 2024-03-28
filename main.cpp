@@ -1,4 +1,3 @@
-#include <iostream>
 #include <raylib.h>
 #include <vector>
 #include "constants.h"
@@ -22,9 +21,10 @@ int main() {
     float fore_x{};
 
     for (int i{0}; i < number_of_nebs; ++i) {
-        neb_vec.emplace_back(screen_width + (i * 200.0));
+        neb_vec.emplace_back(screen_width + (i * 400.0));
     }
 
+    float finish_line{neb_vec[neb_vec.size() - 1].get_neb_pos_x() + 100};
 
     SetTargetFPS(60);
 
@@ -68,14 +68,23 @@ int main() {
 
         update_animation_nebulae(neb_vec, dT);
 
-        for (Nebula& neb: neb_vec) {
-            neb.set_neb_pos_x( Nebula::velocity * dT);
-            neb.draw_neb();
+        bool collision{false};
+
+        check_collisions(neb_vec, scarfy, collision);
+
+        if (!collision) {
+            for (Nebula &neb: neb_vec) {
+                neb.set_neb_pos_x(Nebula::velocity * dT);
+                neb.draw_neb();
+            }
         }
+
+        finish_line += Nebula::velocity * dT;
 
         scarfy.set_scarfy_pos_y(scarfy.get_vel_y() * dT);
 
-        scarfy.draw_scarfy();
+        if (!collision)
+            scarfy.draw_scarfy();
 
         EndDrawing();
     }

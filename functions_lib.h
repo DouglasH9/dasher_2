@@ -41,4 +41,19 @@ void draw_background(float bg_x, Texture bg_text) {
     DrawTextureEx(bg_text, bg2_pos, 0.0, 4.7, WHITE);
 }
 
+void check_collisions(const std::vector<Nebula>& neb_vec, const Scarfy& scarfy, bool& collision) {
+    for (const Nebula& neb: neb_vec) {
+        float padding{40.0};
+        Rectangle nebby { neb.get_neb_pos_x() + padding, neb.get_neb_pos_y() + padding,
+                          neb.get_neb_rec_width() - 2*padding, neb.get_neb_rec_height() - 2*padding };
+
+        Rectangle scarf_rec { scarfy.get_scarfy_pos_x(), scarfy.get_scarfy_pos_y(),
+                              scarfy.get_rec_height(), scarfy.get_scarfy_rec_width()};
+
+        if (CheckCollisionRecs(nebby, scarf_rec)) {
+            collision = true;
+        }
+    }
+}
+
 #endif //DAPPER_DASHER_FUNCTIONS_H

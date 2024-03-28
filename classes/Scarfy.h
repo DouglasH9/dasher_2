@@ -28,6 +28,9 @@ public:
     float get_scarfy_pos_y() const;
 
     [[nodiscard]]
+    float get_scarfy_pos_x() const;
+
+    [[nodiscard]]
     float get_rec_height() const;
 
     [[nodiscard]]
@@ -43,6 +46,7 @@ public:
 
     void set_is_in_air(bool val);
 
+    [[nodiscard]]
     float get_vel_y() const;
 
     void set_velocity_y(float val);

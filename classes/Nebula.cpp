@@ -36,10 +36,6 @@ void Nebula::draw_neb() {
     DrawTextureRec(neb_text, neb_rec, neb_pos, WHITE);
 }
 
-float Nebula::get_neb_vel() const {
-    return this->neb_vel;
-}
-
 float Nebula::get_neb_run_time() const {
     return this->neb_running_time;
 }
@@ -62,4 +58,20 @@ void Nebula::increase_frame() {
 
 void Nebula::reset_frame() {
     this->neb_frame = 0;
+}
+
+float Nebula::get_neb_pos_x() const {
+    return neb_pos.x;
+}
+
+float Nebula::get_neb_pos_y() const {
+    return neb_pos.y;
+}
+
+float Nebula::get_neb_rec_height() const {
+    return neb_rec.height;
+}
+
+float Nebula::get_rec_x() const {
+    return neb_rec.x;
 }

@@ -18,21 +18,30 @@ private:
     float neb_running_time;
 
 public:
-    constexpr static const float velocity{-300};
+    constexpr static const float velocity{-400};
 
     Nebula(float pos_x);
 
     void set_neb_pos_x(float val);
 
     [[nodiscard]]
+    float get_neb_pos_x() const;
+
+    [[nodiscard]]
+    float get_neb_pos_y() const;
+
+    [[nodiscard]]
     float get_neb_rec_width() const;
+
+    [[nodiscard]]
+    float get_neb_rec_height() const;
+
+    [[nodiscard]]
+    float get_rec_x() const;
 
     Texture2D get_neb_text();
 
     void set_neb_rec_x(float val);
-
-    [[nodiscard]]
-    float get_neb_vel() const;
 
     [[nodiscard]]
     float get_neb_run_time() const;

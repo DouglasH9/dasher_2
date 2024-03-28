@@ -100,4 +100,8 @@ float Scarfy::get_vel_y() const {
     return this->velocity_y;
 }
 
+float Scarfy::get_scarfy_pos_x() const {
+    return scarfy_pos.x;
+}
+
 

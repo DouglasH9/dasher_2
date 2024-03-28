@@ -34,4 +34,11 @@ void update_animation_nebulae(std::vector<Nebula>& neb_vec, const float dT) {
     }
 }
 
+void draw_background(float bg_x, Texture bg_text) {
+    Vector2 bg1_pos{bg_x, 0.0};
+    DrawTextureEx(bg_text, bg1_pos, 0.0, 4.7, WHITE);
+    Vector2 bg2_pos{bg_x + ((float)bg_text.width * 2.0), 0.0};
+    DrawTextureEx(bg_text, bg2_pos, 0.0, 4.7, WHITE);
+}
+
 #endif //DAPPER_DASHER_FUNCTIONS_H
